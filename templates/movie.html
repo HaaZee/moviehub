@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="poster">
+  <img src="{{ data[0] }}">
+  <div class="poster-info">
+    <h2>{{ data[1] }}</h2>
+    <h6>{{ data[2] }}</h6>
+    <div>
+      <div class="poster-info star-ratings-sprite">
+        <span style="width:{{ data[3] * 10}}%" class="star-ratings-sprite-rating"></span>
+      </div>
+      <div class="rating">
+        <h6>{{ data[3] }}</h6>
+        <p>{{ data[5] }} MIN / {{ data[6]}} / {{ data[4] }}</p>
+      </div>
+      <div class="genres">
+        <h3>THE GENRES</h3>
+        {% for genre in genres %}
+          <div class="genre-box">
+            <h6>{{ genre }}</h6>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="overview">
+        <h3>THE SYNOPSIS</h3>
+        <small style="font-size: 65%">{{ data[7] }}</small>
+      </div>
+      <div class="links">
+        <div class="link-box" onclick="location.href='{{ data[8] }}';" style="cursor: pointer;">
+          <h6>Website</h6>
+        </div>
+        <div class="link-box" onclick="location.href='{{ data[9] }}';" style="cursor: pointer;">
+          <h6>IMDB</h6>
+        </div>
+        <div class="link-box" onclick="location.href='ombi_request/{{ data[10] }}';" style="cursor: pointer;">
+          <h6>Ombi Request</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

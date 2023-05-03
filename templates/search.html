@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="grid-container grid-container--fit">
+{% for r in movies['results'] %}
+  <a href="/movie?id={{ r['id'] }}">
+    <div class="box">
+      <div class="card">
+        <div class="img-hover-zoom">
+          {% if r['poster_path'] is none %}
+            <img src="{{ url_for('static', filename='nothing.svg') }}">
+          {% else %}
+            <img src="https://image.tmdb.org/t/p/w342/{{ r['poster_path'] }}">
+          {% endif %}
+        </div>
+        <p>{{ r['title'] }}</p>
+        <div class="star-ratings-sprite">
+          <span style="width:{{ r['vote_average'] * 10}}%" class="star-ratings-sprite-rating"></span>
+        </div>
+        <small class="votes">Voted {{ r['vote_average']}} by {{ r['vote_count'] }} people</small>
+      </div>
+    </div>
+  </a>
+{% endfor %}
+</div>
+
+{% endblock %}
