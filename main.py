@@ -1,8 +1,9 @@
 import os
 import requests
-from flask import render_template, url_for, flash, redirect, request
-from app import app
-from app.movie import search_by_name, search_by_id, get_recent
+from flask import Flask, render_template, url_for, flash, redirect, request
+from movie import *
+
+app = Flask(__name__)
 
 settings_folder = os.path.join('static', 'settings')
 
@@ -75,3 +76,7 @@ def dated_url_for(endpoint, **values):
                                  endpoint, filename)
             values['q'] = int(os.stat(file_path).st_mtime)
     return url_for(endpoint, **values)
+
+if __name__ == "__main__":
+    app.config['SECRET_KEY'] = os.environ['TOKEN']
+    app.run(debug=True, port=os.getenv("PORT", default=5000))
