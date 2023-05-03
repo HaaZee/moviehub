@@ -1,6 +1,7 @@
 import tmdbsimple as tmdb
 from pprint import pprint
 import re
+import os
 
 tmdb.API_KEY = os.environ['tmdb_api']
 
